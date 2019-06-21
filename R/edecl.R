@@ -122,7 +122,7 @@ find_region <- function(s) {
                 "м. Севастополь")
   found <- regions[tolower(s) == tolower(regions)]
   if (length(found) == 0) {
-    found <- stringr::str_detect(regions, s)
+    found <- stringr::str_detect(regions, fixed(s))
     if (sum(found) == 0) {
       stop(paste0("Cannot find region by substring \"", s, "\""))
     }
@@ -132,6 +132,8 @@ find_region <- function(s) {
     } else {
       regions[found]
     }
+  } else {
+    found
   }
 }
 
